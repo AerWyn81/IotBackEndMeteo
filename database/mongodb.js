@@ -1,26 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-mongoose.connect(connectionUri, {useNewUrlParser: true, useUnifiedTopology: true});
+const mongoose = require("mongoose");
 
-//todo: export mongoose
-
-//todo: add environment variables
-
-const connectionUri = 'mongodb://localhost:27017';
-
-const deviceSchema = new Schema({
-    deviceName: String,
-    status: Boolean,
-    zoneLat: Number,
-    zoneLong: Number,
-    temperature: Number,
-    humidity: Number,
-    windSpeed: Number,
-    createdAt: { type: Date, default: Date.now()}
+const connectionUri = "mongodb://localhost:27017/weather";
+const mongoInstance = mongoose.connect(connectionUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
-const Device = Schema('Device', deviceSchema);
-
-module.exports = {
-  Device
-};
+module.exports = mongoInstance;
