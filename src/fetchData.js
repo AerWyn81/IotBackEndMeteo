@@ -1,6 +1,6 @@
-import axiosInstance from "../axiosInstance";
+import axiosInstance from "./axiosInstance";
 import Device from "./models/Device";
-import mongoInstance from "../database/mongodb";
+import mongoInstance from "./database/mongodb";
 
 async function fetchDataFromServerEveryMinute() {
   const temperatureDevices = await fetchTemperatureFromServer();
@@ -20,7 +20,7 @@ async function fetchDataFromServerEveryMinute() {
     Object.values(devicesWithStatus)
   );
   console.log("isDevicesSaved", isDevicesSaved);
-  setInterval(fetchDataFromServerEveryMinute, 60000);
+  setTimeout(fetchDataFromServerEveryMinute, 60000);
 }
 
 const saveDevicesToDatabase = async (devices) => {

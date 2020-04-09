@@ -1,5 +1,4 @@
-const Schema = require("mongoose").Schema;
-const model = require("mongoose").model;
+import { Schema, model } from "mongoose";
 
 const deviceSchema = new Schema({
   deviceName: String,
