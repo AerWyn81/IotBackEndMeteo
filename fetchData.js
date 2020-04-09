@@ -1,13 +1,25 @@
 const axiosInstance = require("./axiosInstance");
 
 async function fetchDataFromServerEveryMinute() {
-  await fetchDataFromServer();
-  setInterval(fetchDataFromServer, 60000);
+    let temperature = await fetchTemperatureFromServer();
+    let humidity = await fetchHumidityFromServer();
+    let wind = await  fetchWindFromServer();
+}
+
+async function fetchTemperatureFromServer() {
+  return await axiosInstance.get("/temperature");
+}
+
+async function fetchHumidityFromServer() {
+  return await axiosInstance.get("/humidity");
+}
+
+async function fetchWindFromServer() {
+  return await axiosInstance.get("/wind");
 }
 
 async function fetchDataFromServer() {
   const { data } = await axiosInstance.get("/temperature");
-  console.log("data", data);
 }
 
 module.exports = fetchDataFromServerEveryMinute;
