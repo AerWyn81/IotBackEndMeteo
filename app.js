@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
-const fetchDataFromAPI = require("./fetchData");
+const fetchDataFromAPIAndSave = require("./fetchData");
 
 const app = express();
 
@@ -16,6 +16,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-fetchDataFromAPI();
+setInterval(fetchDataFromAPIAndSave, 60000);
 
 module.exports = app;
