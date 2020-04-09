@@ -16,6 +16,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 
-setInterval(fetchDataFromAPIAndSave, 60000);
+fetchDataFromAPIAndSave();
 
 module.exports = app;
