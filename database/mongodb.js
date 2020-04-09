@@ -6,4 +6,4 @@ const mongoInstance = mongoose.connect(connectionUri, {
   useUnifiedTopology: true,
 });
 
-module.exports = mongoInstance;
+export default mongoInstance;
