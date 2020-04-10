@@ -1,5 +1,9 @@
 import Device from "../models/Device";
 
+function getTemperatureCelsiusToFahrenheit(temperature) {
+  return (temperature * 9) / 5 + 32;
+}
+
 const temperature = async (req, res) => {
   const deviceName = req.params.deviceName;
   const format = req.query.format ?? "C";
@@ -12,7 +16,7 @@ const temperature = async (req, res) => {
 
   let temperature = device.temperature;
   if (format === "F") {
-    temperature = (device.temperature * 9) / 5 + 32;
+    temperature = getTemperatureCelsiusToFahrenheit(device.temperature);
   }
 
   res.status(200).json({ temperature });

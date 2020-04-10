@@ -1,5 +1,5 @@
 const home = (req, res) => {
-    res.send("api home");
+  res.send("api home");
 };
 
-export default home
+export default home;

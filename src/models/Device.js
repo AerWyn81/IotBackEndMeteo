@@ -16,6 +16,11 @@ deviceSchema.statics.findByName = async (name) =>
     deviceName: name,
   });
 
+deviceSchema.statics.findAllByName = async (name) =>
+  await Device.find({
+    deviceName: name,
+  });
+
 const Device = model("Device", deviceSchema);
 
 export default Device;
