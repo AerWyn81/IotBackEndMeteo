@@ -1,4 +1,4 @@
-import {model, Schema} from "mongoose";
+import { model, Schema } from "mongoose";
 
 const deviceSchema = new Schema({
   deviceName: String,
@@ -11,11 +11,10 @@ const deviceSchema = new Schema({
   createdAt: { type: Date, default: Date.now() },
 });
 
-deviceSchema.statics.findByName = async function(name) {
-  return this.findOne({
-    deviceName: name
+deviceSchema.statics.findByName = async (name) =>
+  await Device.findOne({
+    deviceName: name,
   });
-};
 
 const Device = model("Device", deviceSchema);
 
