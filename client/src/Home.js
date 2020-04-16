@@ -1,9 +1,10 @@
 import React from "react";
+import MapGenerator from "./MapGenerator";
+
 
 function Home() {
   return (
     <div>
-      <div id="map">INSERER LA MAP</div>
       <div className="row">
         <div className="col-md-4">
           <button className="btn btn-outline-primary btn-block">
@@ -36,6 +37,9 @@ function Home() {
           <button className="btn btn-outline-dark btn-block">
             All Humidiy
           </button>
+          <a href="/map" className="btn btn-outline-dark btn-block">
+              Map
+          </a>
         </div>
       </div>
     </div>
