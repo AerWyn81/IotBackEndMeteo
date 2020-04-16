@@ -1,28 +1,20 @@
 const Device = require("../models/Device");
-const AverageDevice = async (req, res) => {
+const { averageDataFromDevice } = require("../functions");
+
+const averageDevice = async (req, res) => {
   const deviceName = req.params.deviceName;
-  let devices = await Device.findAllByName(deviceName);
-  let totalTemperature = null,
-    totalWindSpeed = null,
-    totalHumidity = null,
-    AverageTemperature,
-    AverageWindSpeed,
-    AverageHumidity;
-  devices.map((element) => {
-    totalTemperature += element.temperature;
-    totalWindSpeed += element.windSpeed;
-    totalHumidity += element.humidity;
+  const devices = await Device.find();
+  const {
+    averageTemperature,
+    averageHumidity,
+    averageWindSpeed,
+  } = averageDataFromDevice(devices, deviceName);
+
+  res.status(200).json({
+    averageTemperature,
+    averageHumidity,
+    averageWindSpeed,
   });
-  AverageTemperature = totalTemperature / devices.length;
-  AverageWindSpeed = totalWindSpeed / devices.length;
-  AverageHumidity = totalHumidity / devices.length;
-  res
-    .status(200)
-    .json({
-      AverageTemperature: AverageTemperature,
-      AverageWindSpeed: AverageWindSpeed,
-      AverageHumidity: AverageHumidity,
-    });
 };
 
-module.exports = AverageDevice;
+module.exports = averageDevice;
