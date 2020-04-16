@@ -30,13 +30,6 @@ function Home() {
           </a>
         </div>
         <div className="col-md-4">
-          <button className="btn btn-outline-dark btn-block">
-            All Temperature
-          </button>
-          <button className="btn btn-outline-dark btn-block">All Wind</button>
-          <button className="btn btn-outline-dark btn-block">
-            All Humidiy
-          </button>
           <a href="/map" className="btn btn-outline-dark btn-block">
               Map
           </a>

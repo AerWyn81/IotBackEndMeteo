@@ -1,5 +1,9 @@
 import React, { Fragment } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
+import {useParams} from "react-router-dom";
+import axios from "axios";
+
+const {useEffect} = require("react");
 
 const PopupMarker = (device) => {
   return (
@@ -9,33 +13,29 @@ const PopupMarker = (device) => {
   );
 };
 
-const MarkersList = ({ devices }) => {
+const MarkersList = ({ devicesCoordinates }) => {
   const items = [];
-  devices.forEach((device) => {
+  const listDevices = Object.values(devicesCoordinates);
+  listDevices.forEach((device) => {
     items.push(PopupMarker(device));
   });
   return <Fragment>{items}</Fragment>;
 };
 
-export default function MapGenerator() {
-  const devices = [
-    {
-      deviceName: "device_1",
-      zoneLat: 44.587981,
-      zoneLong: -0.038672,
-      temperature: 18,
-      wind: 81,
-      humidity: 81,
-    },
-    {
-      deviceName: "device_2",
-      zoneLat: 44.557663,
-      zoneLong: -0.165424,
-      temperature: 18,
-      wind: 81,
-      humidity: 81,
-    },
-  ];
+function MapGenerator() {
+
+  const [devicesCoordinates, setDevicesCoordinates] = React.useState([]);
+
+  const getDevicesCoordinatesFromApi = async () => {
+    const { data } = await axios.get(
+        `http://localhost:9000/api/v1/devices/coordinates`
+    );
+    setDevicesCoordinates(data);
+  };
+
+  useEffect(() => {
+    getDevicesCoordinatesFromApi();
+  }, []);
 
   return (
     <div>
@@ -48,7 +48,7 @@ export default function MapGenerator() {
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MarkersList devices={devices} />
+        <MarkersList devicesCoordinates={devicesCoordinates} />
       </Map>
       <a href="/" className="btn btn-outline-dark btn-block" style={{width:"1000px"}}>
         Home
@@ -56,3 +56,5 @@ export default function MapGenerator() {
     </div>
   );
 }
+
+export default MapGenerator;
