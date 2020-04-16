@@ -15,7 +15,7 @@ const averageDevices = async (req, res) => {
     });
     if(sortDevices){
         sortDevices.forEach(element =>{
-            finalDevices.push(Function.averageDataFromDevice(devices,element.deviceName));
+            finalDevices.push({[element.deviceName]:Function.averageDataFromDevice(devices,element.deviceName)}) ;
         });
     }
     res
