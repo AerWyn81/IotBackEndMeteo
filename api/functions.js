@@ -21,4 +21,9 @@ const averageDataFromDevice = (devices, deviceName) =>
     { averageTemperature: 0, averageHumidity: 0, averageWindSpeed: 0 }
   );
 
-module.exports = { averageDataFromDevice };
+const getTemperatureCelsiusToFahrenheit = (temperature) => {
+    return (temperature * 9) / 5 + 32;
+}
+
+
+module.exports = { averageDataFromDevice, getTemperatureCelsiusToFahrenheit };

@@ -29,6 +29,21 @@ router.get("/devices/coordinates", coordinatesDevices);
 
 /**
  * @swagger
+ * /devices/average:
+ *   get:
+ *     tags:
+ *       - Devices
+ *     description: Return devices with average temperature, humidity and windspeed
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success, temperature/windspeed/humidity for all devices
+ */
+router.get("/devices/average", averageDevices);
+
+/**
+ * @swagger
  * /devices/{deviceName}:
  *   get:
  *     tags:
@@ -68,7 +83,6 @@ router.get("/devices/:deviceName", allInfoDevice);
  *         description: Success, temperature/windspeed/humidity/latitude/longitude
  */
 router.get("/devices/:deviceName/last", infoDevice);
-router.get("/averageDevices", averageDevices);
 
 /**
  * @swagger

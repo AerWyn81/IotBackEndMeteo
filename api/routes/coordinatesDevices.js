@@ -1,7 +1,10 @@
 const Device = require("../models/Device");
 
 const coordinatesDevices = async (req, res) => {
-  const devices = await Device.find({});
+    let devices = await Device.find({})
+        .limit(20)
+        .sort({ createdAt: -1 });
+
   const devicesCoordinates = devices.reduce(
     (devicesList, { deviceName, zoneLat, zoneLong }) => {
       devicesList[deviceName] = {
