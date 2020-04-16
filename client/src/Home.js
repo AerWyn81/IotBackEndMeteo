@@ -7,27 +7,27 @@ function Home() {
     <div>
       <div className="row">
         <div className="col-md-4">
-          <button className="btn btn-outline-primary btn-block">
+          <a href="/device/device_1" className="btn btn-outline-primary btn-block">
             Device_1
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_2" className="btn btn-outline-primary btn-block">
             Device_2
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_3" className="btn btn-outline-primary btn-block">
             Device_3
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_4" className="btn btn-outline-primary btn-block">
             Device_4
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_5" className="btn btn-outline-primary btn-block">
             Device_5
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_6" className="btn btn-outline-primary btn-block">
             Device_6
-          </button>
-          <button className="btn btn-outline-primary btn-block">
+          </a>
+          <a href="/device/device_7" className="btn btn-outline-primary btn-block">
             Device_7
-          </button>
+          </a>
         </div>
         <div className="col-md-4">
           <button className="btn btn-outline-dark btn-block">
