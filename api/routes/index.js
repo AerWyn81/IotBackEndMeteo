@@ -9,6 +9,7 @@ const averageDevice = require("./averageDevice");
 const windSpeed = require("./windSpeed");
 const temperature = require("./temperature");
 const coordinatesDevices = require("./coordinatesDevices");
+const averageDevices = require("./averageDevices");
 
 const router = express.Router();
 
@@ -16,6 +17,7 @@ router.get("/", home);
 router.get("/devices/coordinates", coordinatesDevices);
 router.get("/devices/:deviceName", allInfoDevice);
 router.get("/devices/:deviceName/last", infoDevice);
+router.get("/averageDevices", averageDevices);
 router.get("/devices/:deviceName/convertTemperature", convertTemperature);
 router.get("/devices/:deviceName/average", averageDevice);
 router.get("/devices/:deviceName/humidity", humidity);
