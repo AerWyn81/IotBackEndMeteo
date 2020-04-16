@@ -16,7 +16,7 @@ services:
   api:
     build:
       context: ./api
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     restart: always
     ports:
       - "9000:9000"

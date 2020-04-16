@@ -3,7 +3,7 @@ const home = require("./home");
 const temperature = require("./temperature");
 const humidity = require("./humidity");
 const unknown = require("./unknown");
-const infoDevice = require("./InfoDevice");
+const infoDevice = require("./infoDevice");
 const averageDevice = require("./averageDevice");
 const windSpeed = require("./windSpeed");
 
