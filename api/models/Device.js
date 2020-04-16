@@ -8,7 +8,7 @@ const deviceSchema = new Schema({
   temperature: Number,
   humidity: Number,
   windSpeed: Number,
-  createdAt: { type: Date, default: Date.now() },
+  createdAt: { type: Date, default: Date.now },
 });
 
 deviceSchema.statics.findByName = async (name) =>
