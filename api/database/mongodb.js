@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connectionUri = "mongodb://localhost:27017/weather";
+const connectionUri = "mongodb://mongodb:27017/weather";
 
 const options = {
   autoIndex: false, // Don't build indexes
