@@ -5,7 +5,7 @@ const allInfoDevice = async (req, res) => {
     .limit(20)
     .sort({ createdAt: -1 });
   if (!devices) {
-    return res.status(404).json({ error: "Device not found" });
+    return res.status(404).json({ error: "No device found." });
   }
 
   const devicesValues = Object.values(devices).map(

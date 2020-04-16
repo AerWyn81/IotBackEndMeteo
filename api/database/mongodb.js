@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const connectionUri = "mongodb://mongodb:27017/weather";
+const connectionUri = "mongodb://localhost:27017/weather";
 
 const options = {
   autoIndex: false, // Don't build indexes
@@ -12,14 +12,16 @@ const options = {
 };
 
 const connectWithRetry = () => {
-  console.log('MongoDB connection with retry')
-  mongoose.connect(connectionUri, options).then(()=>{
-    console.log('MongoDB is connected')
-  }).catch(err=>{
-    console.log('MongoDB connection unsuccessful, retry after 5 seconds.')
-    setTimeout(connectWithRetry, 5000)
-  })
+  console.log("MongoDB connection with retry");
+  mongoose
+    .connect(connectionUri, options)
+    .then(() => {
+      console.log("MongoDB is connected");
+    })
+    .catch((err) => {
+      console.log("MongoDB connection unsuccessful, retry after 5 seconds.");
+      setTimeout(connectWithRetry, 5000);
+    });
 };
 
 connectWithRetry();
-
