@@ -14,12 +14,12 @@ const deviceSchema = new Schema({
 deviceSchema.statics.findByName = async (name) =>
   await Device.findOne({
     deviceName: name,
-  });
+  }).sort({ createdAt: -1 });
 
 deviceSchema.statics.findAllByName = async (name) =>
   await Device.find({
     deviceName: name,
-  });
+  }).limit(20).sort({ createdAt: -1 });
 
 const Device = model("Device", deviceSchema);
 

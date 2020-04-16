@@ -1,7 +1,11 @@
 const Device = require("../models/Device");
 const Function = require("../functions");
 const averageDevices = async (req, res) => {
-    let devices = await Device.find({}), finalDevices =[], sortDevices =[],addValue = true;
+    let devices = await Device.find({}).sort({ createdAt: -1 });
+    let finalDevices = [];
+    let sortDevices = [];
+    let addValue = true;
+
     devices.forEach(element =>{
         sortDevices.forEach(devicesSorted =>{
             if(element.deviceName === devicesSorted.deviceName){

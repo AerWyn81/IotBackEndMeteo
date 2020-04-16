@@ -3,7 +3,7 @@ const { averageDataFromDevice } = require("../functions");
 
 const averageDevice = async (req, res) => {
   const deviceName = req.params.deviceName;
-  const devices = await Device.find();
+  const devices = await Device.find().sort({ createdAt: -1 });
   const {
     averageTemperature,
     averageHumidity,

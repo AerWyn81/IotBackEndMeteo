@@ -4,6 +4,7 @@ const allInfoDevice = async (req, res) => {
   let devices = await Device.find({ deviceName })
     .limit(20)
     .sort({ createdAt: -1 });
+
   if (!devices) {
     return res.status(404).json({ error: "No device found." });
   }

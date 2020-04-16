@@ -1,8 +1,5 @@
 const Device = require("../models/Device");
-
-function getTemperatureCelsiusToFahrenheit(temperature) {
-  return (temperature * 9) / 5 + 32;
-}
+const { getTemperatureCelsiusToFahrenheit } = require("../functions");
 
 const convertTemperature = async (req, res) => {
   const deviceName = req.params.deviceName;
