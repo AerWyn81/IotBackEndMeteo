@@ -1,17 +1,16 @@
 import React, { Fragment } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import {useParams} from "react-router-dom";
 import axios from "axios";
 
-const {useEffect} = require("react");
+const { useEffect } = require("react");
 
-const PopupMarker = (device) => {
-  return (
-    <Marker position={[device.zoneLat, device.zoneLong]}>
-      <Popup>{device.deviceName}</Popup>
-    </Marker>
-  );
-};
+const PopupMarker = ({ deviceName, zoneLat, zoneLong }) => (
+  <Marker position={[zoneLat, zoneLong]}>
+    <Popup>
+      <a href={`/device/${deviceName}`}>{deviceName}</a>
+    </Popup>
+  </Marker>
+);
 
 const MarkersList = ({ devicesCoordinates }) => {
   const items = [];
@@ -23,12 +22,11 @@ const MarkersList = ({ devicesCoordinates }) => {
 };
 
 function MapGenerator() {
-
   const [devicesCoordinates, setDevicesCoordinates] = React.useState([]);
 
   const getDevicesCoordinatesFromApi = async () => {
     const { data } = await axios.get(
-        `http://localhost:9000/api/v1/devices/coordinates`
+      `http://localhost:9000/api/v1/devices/coordinates`
     );
     setDevicesCoordinates(data);
   };
@@ -39,20 +37,28 @@ function MapGenerator() {
 
   return (
     <div>
-      <Map
-        center={[44.587981, -0.038672]}
-        zoom={10}
-        style={{ width: "1000px", height: "750px" }}
-      >
-        <TileLayer
-          attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <MarkersList devicesCoordinates={devicesCoordinates} />
-      </Map>
-      <a href="/" className="btn btn-outline-dark btn-block" style={{width:"1000px"}}>
-        Home
-      </a>
+      <div className="navbar navbar-light bg-light">
+        <a
+          href="http://localhost:3000/"
+          className="navbar-toggler"
+          type="button"
+        >
+          Home
+        </a>
+      </div>
+      <div className="container-fluid">
+        <Map
+          center={[44.587981, -0.038672]}
+          zoom={10}
+          style={{ width: "98vw", height: "90vh" }}
+        >
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <MarkersList devicesCoordinates={devicesCoordinates} />
+        </Map>
+      </div>
     </div>
   );
 }
