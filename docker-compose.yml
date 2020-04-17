@@ -1,17 +1,43 @@
-version: "3"
+version: "2"
 services:
-  app:
-    container_name: express-mongo
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     restart: always
-    build: ./
     ports:
-      - "80:3000"
+      - "3000:3000"
+    working_dir: /client/src/app
     volumes:
-      - .:/app
+      - ./client:/client/src/app
+      - /client/node_modules
+    entrypoint: ["npm", "start"]
     links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
+      - api
+    networks:
+      - webappnetwork
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
     ports:
-      - "27017:27017"
+      - "9000:9000"
+    volumes:
+      - ./api:/api
+      - /api/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - webappnetwork
+  mongodb:
+    image: mongo
+    restart: always
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - webappnetwork
+networks:
+  webappnetwork:
+    driver: bridge
