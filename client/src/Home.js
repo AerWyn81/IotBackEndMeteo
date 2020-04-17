@@ -1,38 +1,56 @@
-import React from "react";
-import MapGenerator from "./MapGenerator";
-
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 
 function Home() {
+  const [devicesList, setDevicesList] = useState([]);
+
+  const fetchDevicesList = useCallback(async () => {
+    const { data } = await axios.get(
+      `http://localhost:9000/api/v1/devices/list`
+    );
+    setDevicesList(data);
+  }, []);
+  useEffect(() => {
+    fetchDevicesList();
+  }, []);
+
   return (
     <div>
-      <div className="row">
-        <div className="col-md-4">
-          <a href="/device/device_1" className="btn btn-outline-primary btn-block">
-            Device_1
-          </a>
-          <a href="/device/device_2" className="btn btn-outline-primary btn-block">
-            Device_2
-          </a>
-          <a href="/device/device_3" className="btn btn-outline-primary btn-block">
-            Device_3
-          </a>
-          <a href="/device/device_4" className="btn btn-outline-primary btn-block">
-            Device_4
-          </a>
-          <a href="/device/device_5" className="btn btn-outline-primary btn-block">
-            Device_5
-          </a>
-          <a href="/device/device_6" className="btn btn-outline-primary btn-block">
-            Device_6
-          </a>
-          <a href="/device/device_7" className="btn btn-outline-primary btn-block">
-            Device_7
-          </a>
-        </div>
-        <div className="col-md-4">
-          <a href="/map" className="btn btn-outline-dark btn-block">
-              Map
-          </a>
+      <div className="navbar navbar-light bg-light">
+        <a
+          href="http://localhost:9000/api-docs"
+          className="navbar-toggler"
+          type="button"
+        >
+          Swagger
+        </a>
+      </div>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-6">
+            <h3>Devices list:</h3>
+            <div className="list-group">
+              {devicesList.map((deviceName) => (
+                <a
+                  href={`/device/${deviceName}`}
+                  className="btn btn-outline-primary btn-block"
+                >
+                  {deviceName}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className="col-md-4 card">
+            <div className="card-body">
+              <h4 className="card-title">Devices Map</h4>
+              <p className="card-text">
+                You can see where are all the devices in the map.
+              </p>
+              <a href="/map" className="btn btn-primary">
+                See the devices Map
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

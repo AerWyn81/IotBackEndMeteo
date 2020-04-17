@@ -8,6 +8,7 @@ const averageDevice = require("./averageDevice");
 const windSpeed = require("./windSpeed");
 const temperature = require("./temperature");
 const coordinatesDevices = require("./coordinatesDevices");
+const devicesList = require("./devicesList");
 const averageDevices = require("./averageDevices");
 
 const router = express.Router();
@@ -26,6 +27,21 @@ const router = express.Router();
  *         description: Success, all devices coordinates
  */
 router.get("/devices/coordinates", coordinatesDevices);
+
+/**
+ * @swagger
+ * /devices/list:
+ *   get:
+ *     tags:
+ *       - Devices
+ *     description: Return all devices names
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Success, all devices names
+ */
+router.get("/devices/list", devicesList);
 
 /**
  * @swagger
